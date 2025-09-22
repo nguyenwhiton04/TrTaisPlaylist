@@ -1,0 +1,195 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    /*border: 1px solid red;*/
+    color: #333;
+}
+
+.container{
+    width: 100%;
+    min-height: 100vh;
+    background: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    
+}
+
+.options{
+    display: flex;
+    width: 100%;
+    background: #ffe0e5;
+}
+
+#playlist, #wordle{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    gap: 10px;
+    padding: 12px;
+    width:100%;
+    background-color:rgb(0, 0, 0);
+    border: none;
+    font-size: 4rem;
+    
+}
+
+#playlist{
+    background-color: #ffe0e5;
+}
+
+#wordle{
+    background-color: #c4e5f1;
+}
+
+
+.music-player{
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 10px;
+    background: #ffe0e5;
+    text-align: center;
+    flex: 1;
+}
+
+nav{
+    display:flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.song-img{
+    width: 80%;
+    border-radius: 50%;
+    border: 8px solid #fff;
+    box-shadow: 0 10px 60px rgba(225, 26, 26, 0.22);
+    
+}
+
+.music-player h1{
+    font-size: 80px;
+    font-weight: 400;
+    color:#333;
+    margin-top: 20px;
+}
+
+.music-player p{
+    margin-bottom: 20px;
+    font-size: 50px;
+}
+
+.music-player{
+    font-size: 14px;
+    color:#333;
+}
+
+audio{
+    width: 80%;
+
+}
+
+#audio-div{
+    padding-bottom:100px;
+}
+
+.song-button{
+    display: flex;
+    align-items:center;
+    gap: 10px;
+    padding: 10px;
+    
+    width:100%;
+    background-color:white;
+    border-radius: 10px;
+    margin-top: 2px;
+}
+
+#song-selection-picture{
+    width: 20%;
+    height: 20%;
+}
+
+#song-info{
+    margin: 0;
+    font-size:3rem;
+    text-align:left;
+}
+
+#progress{
+    -webkit-appearance: none;
+    width: 80%;
+    border-radius: 10px;
+    background:#f53192;
+    margin: 40px;
+}
+
+.controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls div{
+    width: 20vw;
+    height: 20vw;
+    background: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #f53192;
+    box-shadow: 0 10px 20px rgba(255, 26, 26, 0.22);
+}
+
+#wordle-code{
+    background-color: #c4e5f1;
+    width: 100%;
+    text-align: center;
+    height: 100vh;
+}
+
+.button-grid{
+    padding-top: 5vh;
+}
+
+.num-btn, #enter{
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    background-color: #ffe0e5;
+    font-size: 5vh;
+}
+
+#enter{
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    background-color: #ffe0e5;
+    font-size: 3vh;
+}
+
+#wordle-code h2{
+    padding-top: 5vh;
+    font-size: 8vh;
+    padding-bottom: 4vh;
+}
+
+#display{
+    width: 30vh;
+    height: 5vh;
+    font-size: 3vh;
+    
+}
+
+@keyframes spin{
+    from{transform: rotate(0deg);}
+    to{transform: rotate(360deg);}
+}
+
+.spin{
+    animation: spin 6s linear infinite;
+}

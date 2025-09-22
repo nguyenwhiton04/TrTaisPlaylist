@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" context="width=device-width", initial-scale="1.0">
+        <title>tr. tai's playlist</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/1a476ba48b.js" crossorigin="anonymous"></script>
+        <style>
+            .hidden{
+                display: none;
+            }
+
+            #secret {
+                margin-top: 20px;
+                font-size: 18px;
+                color: green;
+                font-weight: bold;
+                display: none; /* hidden by default */
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="options">
+                <button id="playlist">tr. tài's playlist</button>
+                <button id="wordle">code</button>
+            </div>
+
+            <div class="wordle-code hidden" id="wordle-code">
+                <h2>enter the 5-digit code</h2>
+                <input type="text" id="display" readonly maxlength="5">
+              
+                <div class="button-grid">
+                    <div id="calc">
+                        <button class="num-btn">1</button>
+                        <button class="num-btn">2</button>
+                        <button class="num-btn">3</button>
+                    </div>
+
+                    <div id="calc">
+                        <button class="num-btn">4</button>
+                        <button class="num-btn">5</button>
+                        <button class="num-btn">6</button>
+                    </div>
+
+                    <div id="calc">
+                        <button class="num-btn">7</button>
+                        <button class="num-btn">8</button>
+                        <button class="num-btn">9</button>
+                    </div>
+                </div>
+              
+                <button id="zero" class="num-btn">0</button>
+                <br><br>
+                <button id="enter">Enter</button>
+              
+                <div id="secret">🎉 Secret message unlocked! 🎉</div>
+              
+            </div>
+
+            <div class="music-player" id="music-player">
+                <img id="album-cover" src="media/album-covers/mrtai.jpeg" class="song-img">
+                <h1 id="song-name"></h1>
+                <p id="artist"></p>
+
+                <div id="audio-div">
+                    <audio controls id="song-audio">
+                        <source id="song-file" src="" type="audio/mpeg">
+                    </audio>
+                    <input type="range" value="0" id="progress">
+                    <div class="controls">
+                        <div onclick="playPause()"><i class="fa-solid fa-play" id="ctrlIcon"></i></div>
+                    </div>
+                </div>
+                
+
+                <div class="song-selection">
+                    <button id="song1" class="song-button">
+                        <img id="song-selection-picture" src="media/album-covers/nhuquynh.jpeg">
+                        <div>
+                            <p id="song-info">Người Tình Mùa Đông</p>
+                            <p id="song-info">Như Quỳnh</p>
+                        </div>
+                    </button>
+                    <button id="song2" class="song-button">
+                        <img id="song-selection-picture" src="media/album-covers/vangtrangkhoc.jpeg">
+                        <div>
+                            <p id="song-info">Vầng Trăng Khóc</p>
+                            <p id="song-info">Nhật Tinh Anh ft. Khánh Ngọc</p>
+                        </div>
+                    </button>
+                    <button id="song3" class="song-button">
+                        <img id="song-selection-picture" src="media/album-covers/thamgoitenanh.jpg">
+                        <div>
+                            <p id="song-info">Thầm Gọi Tên Anh</p>
+                            <p id="song-info">Minh Tuyết</p>
+                        </div>
+                    </button>
+                    <button id="song4" class="song-button">
+                        <img id="song-selection-picture" src="media/album-covers/hayvedaybenanh.jpeg">
+                        <div>
+                            <p id="song-info">Hãy Về Đây Bên Anh</p>
+                            <p id="song-info">Duy Mạnh</p>
+                        </div>
+                    </button>
+                    <button id="song5" class="song-button">
+                        <img id="song-selection-picture" src="media/album-covers/xinloianh.jpg">
+                        <div>
+                            <p id="song-info">Xin Lỗi Anh</p>
+                            <p id="song-info">Bằng Kiêu 7t. Minh Tuyết</p>
+                        </div>
+                    </button>
+
+                    
+                    
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const sections = document.querySelectorAll(".section");
+            const playlist_button = document.getElementById("playlist");
+            const code_button = document.getElementById("wordle");
+            const music_player = document.getElementById("music-player");
+            const wordle_code = document.getElementById("wordle-code");
+            const song_title = document.getElementById("song-name");
+            const artist_name = document.getElementById("artist");
+            const album_cover = document.getElementById("album-cover");
+            const song_file = document.getElementById("song-file");
+            const audio = document.getElementById("song-audio");
+            const button1 = document.getElementById("song1");
+            const button2 = document.getElementById("song2");
+            const button3 = document.getElementById("song3");
+            const button4 = document.getElementById("song4");
+            const button5 = document.getElementById("song5");
+
+            let progress = document.getElementById("progress");
+            let ctrlIcon = document.getElementById("ctrlIcon");
+
+            audio.onloadmetadata = function(){
+                progress.max = audio.duration;
+                progress.value = song.currentTime;
+            }
+
+            function playPause(){
+                if(ctrlIcon.classList.contains("fa-pause")){
+                    audio.pause();
+                    ctrlIcon.classList.remove("fa-pause");
+                    ctrlIcon.classList.add("fa-play");
+                    album_cover.classList.remove("spin");
+                } else {
+                    audio.play();
+                    ctrlIcon.classList.remove("fa-play");
+                    ctrlIcon.classList.add("fa-pause");
+                    album_cover.classList.add("spin");
+                }
+            }
+
+            if(audio.play()){
+                setInterval(()=>{
+                    progress.value = audio.currentTime;
+                }, 500);
+            }
+
+            function showSection(sectionToShow){
+                music_player.classList.add("hidden");
+                wordle_code.classList.add("hidden");
+                sectionToShow.classList.remove("hidden");
+                audio.pause();
+            }
+            playlist_button.addEventListener("click", () => showSection(music_player));
+            code_button.addEventListener("click", () => showSection(wordle_code));
+
+
+
+            button1.addEventListener("click", () => {
+                song_title.textContent = "Người T1nh Mùa Đông";
+                artist_name.textContent = "Như Quỳnh";
+                album_cover.src = "media/album-covers/nhuquynh.jpeg";
+                song_file.src = "media/songs/nhuquynh.mp3";
+                audio.load();
+                ctrlIcon.classList.remove("fa-pause");
+                ctrlIcon.classList.add("fa-play");
+                
+                if(album_cover.classList.contains("spin")){
+                    album_cover.classList.remove("spin");
+                }
+
+            });
+
+            button2.addEventListener("click", () => {
+                song_title.textContent = "Vầng Trăng Khóc";
+                artist_name.textContent = "Nhật Tinh Anh ft. Khánh Ng0c";
+                album_cover.src = "media/album-covers/vangtrangkhoc.jpeg";
+                song_file.src = "media/songs/vangtrangkhoc.mp3";
+                audio.load();
+                ctrlIcon.classList.remove("fa-pause");
+                ctrlIcon.classList.add("fa-play");
+                if(album_cover.classList.contains("spin")){
+                    album_cover.classList.remove("spin");
+                }
+            });
+
+            button3.addEventListener("click", () => {
+                song_title.textContent = "Thầm Gọi Tên 4nh";
+                artist_name.textContent = "Minh Tuyết";
+                album_cover.src = "media/album-covers/thamgoitenanh.jpg";
+                song_file.src = "media/songs/thamgoitenanh.mp3";
+                audio.load();
+                ctrlIcon.classList.remove("fa-pause");
+                ctrlIcon.classList.add("fa-play");
+                if(album_cover.classList.contains("spin")){
+                    album_cover.classList.remove("spin");
+                }
+            });
+
+            button4.addEventListener("click", () => {
+                song_title.textContent = "Hãy Về Đây 8ên Anh";
+                artist_name.textContent = "Duy Mạnh";
+                album_cover.src = "media/album-covers/hayvedaybenanh.jpeg";
+                song_file.src = "media/songs/hayvedaybenanh.mp3";
+                audio.load();
+                ctrlIcon.classList.remove("fa-pause");
+                ctrlIcon.classList.add("fa-play");
+                if(album_cover.classList.contains("spin")){
+                    album_cover.classList.remove("spin");
+                }
+            });
+
+            button5.addEventListener("click", () => {
+                song_title.textContent = "Xin Lỗi Anh";
+                artist_name.textContent = "Bằng Kiêu 7t. Minh Tuyết";
+                album_cover.src = "media/album-covers/xinloianh.jpg";
+                song_file.src = "media/songs/xinloianh.mp3";
+                audio.load();
+                ctrlIcon.classList.remove("fa-pause");
+                ctrlIcon.classList.add("fa-play");
+                if(album_cover.classList.contains("spin")){
+                    album_cover.classList.remove("spin");
+                }
+            });
+
+
+
+            const display = document.getElementById("display");
+            const numButtons = document.querySelectorAll(".num-btn");
+            const enterButton = document.getElementById("enter");
+            const secret = document.getElementById("secret");
+
+            const secretCode = "10487";
+
+            // Handle digit button clicks
+            numButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                if (display.value.length < 5) {
+                display.value += btn.textContent;
+                }
+            });
+            });
+
+            // Handle Enter button
+            enterButton.addEventListener("click", () => {
+            if (display.value === secretCode) {
+                secret.style.display = "block"; // show message
+            } else {
+                alert("Incorrect code. Try again!");
+            }
+            display.value = ""; // reset input
+            });
+        </script>
+    </body>
+</html>
